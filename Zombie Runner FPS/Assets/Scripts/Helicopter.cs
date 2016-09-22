@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+[RequireComponent(typeof(Rigidbody))]
+public class Helicopter : MonoBehaviour
+{
+    private bool isCalled = false;
+    private Rigidbody rigidBody;
 
-public class Helicopter : MonoBehaviour {
-    public AudioClip callSound;
-    private bool called = false;
-	void Start () {
-	
-	}
-
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        if(Input.GetButtonDown("CallHeli") && ! called)
-        {
-            this.GetComponent<AudioSource>().clip = callSound;
-            this.GetComponent<AudioSource>().Play();
-        }
+        rigidBody = this.GetComponent<Rigidbody>();
+
+    }
+
+    public void OnDispatchHelicopter()
+    {
+        Debug.Log("HIHI");
+        rigidBody.velocity = new Vector3(0,0,50f);
+        isCalled= true;
     }
 }
